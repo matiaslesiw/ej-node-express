@@ -1,14 +1,17 @@
+//definiciones 
 const express = require('express');
 const app = express(); // servidor
-app.set('port',3000);
 const path = require('path') // trabajar con directorios
 
+
+//seteos
+app.set('port',3000);
+app.set('view engine','ejs');
+app.set('views', path.join(__dirname, 'frontend'))
 //middlewares
 
 //rutas
-app.get('/', (req, res) =>{
-   res.sendFile(path.join(__dirname, 'frontend/index.html'));
-});
+app.use(require('./frontend/routes/routes'))
 // archivos estaticos (iconos, imagenes, etc)
 
 app.listen(app.get('port'), () =>{
